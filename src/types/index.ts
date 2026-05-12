@@ -18,7 +18,7 @@ export type Test = {
   subtestCount: number;
 };
 
-export type Subtest = {
+export type SubTest = {
   id: string;
   testId: string;
   title: string;
