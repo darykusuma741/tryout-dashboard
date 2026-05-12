@@ -12,7 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppTryoutsRouteImport } from './routes/_app.tryouts'
+import { Route as AppTestsRouteImport } from './routes/_app.tests'
+import { Route as AppSubtestsRouteImport } from './routes/_app.subtests'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppQuestionsRouteImport } from './routes/_app.questions'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppAttemptsRouteImport } from './routes/_app.attempts'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
 
 const AppRoute = AppRouteImport.update({
   id: '/_app',
@@ -28,35 +34,112 @@ const AppTryoutsRoute = AppTryoutsRouteImport.update({
   path: '/tryouts',
   getParentRoute: () => AppRoute,
 } as any)
+const AppTestsRoute = AppTestsRouteImport.update({
+  id: '/tests',
+  path: '/tests',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSubtestsRoute = AppSubtestsRouteImport.update({
+  id: '/subtests',
+  path: '/subtests',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppQuestionsRoute = AppQuestionsRouteImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAttemptsRoute = AppAttemptsRouteImport.update({
+  id: '/attempts',
+  path: '/attempts',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/attempts': typeof AppAttemptsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/questions': typeof AppQuestionsRoute
+  '/settings': typeof AppSettingsRoute
+  '/subtests': typeof AppSubtestsRoute
+  '/tests': typeof AppTestsRoute
   '/tryouts': typeof AppTryoutsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/attempts': typeof AppAttemptsRoute
   '/dashboard': typeof AppDashboardRoute
+  '/questions': typeof AppQuestionsRoute
+  '/settings': typeof AppSettingsRoute
+  '/subtests': typeof AppSubtestsRoute
+  '/tests': typeof AppTestsRoute
   '/tryouts': typeof AppTryoutsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/attempts': typeof AppAttemptsRoute
   '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/questions': typeof AppQuestionsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/subtests': typeof AppSubtestsRoute
+  '/_app/tests': typeof AppTestsRoute
   '/_app/tryouts': typeof AppTryoutsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/tryouts'
+  fullPaths:
+    | '/'
+    | '/analytics'
+    | '/attempts'
+    | '/dashboard'
+    | '/questions'
+    | '/settings'
+    | '/subtests'
+    | '/tests'
+    | '/tryouts'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/tryouts'
-  id: '__root__' | '/' | '/_app' | '/_app/dashboard' | '/_app/tryouts'
+  to:
+    | '/'
+    | '/analytics'
+    | '/attempts'
+    | '/dashboard'
+    | '/questions'
+    | '/settings'
+    | '/subtests'
+    | '/tests'
+    | '/tryouts'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_app/analytics'
+    | '/_app/attempts'
+    | '/_app/dashboard'
+    | '/_app/questions'
+    | '/_app/settings'
+    | '/_app/subtests'
+    | '/_app/tests'
+    | '/_app/tryouts'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -87,6 +170,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppTryoutsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/tests': {
+      id: '/_app/tests'
+      path: '/tests'
+      fullPath: '/tests'
+      preLoaderRoute: typeof AppTestsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/subtests': {
+      id: '/_app/subtests'
+      path: '/subtests'
+      fullPath: '/subtests'
+      preLoaderRoute: typeof AppSubtestsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/questions': {
+      id: '/_app/questions'
+      path: '/questions'
+      fullPath: '/questions'
+      preLoaderRoute: typeof AppQuestionsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/dashboard': {
       id: '/_app/dashboard'
       path: '/dashboard'
@@ -94,16 +205,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/attempts': {
+      id: '/_app/attempts'
+      path: '/attempts'
+      fullPath: '/attempts'
+      preLoaderRoute: typeof AppAttemptsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppAttemptsRoute: typeof AppAttemptsRoute
   AppDashboardRoute: typeof AppDashboardRoute
+  AppQuestionsRoute: typeof AppQuestionsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSubtestsRoute: typeof AppSubtestsRoute
+  AppTestsRoute: typeof AppTestsRoute
   AppTryoutsRoute: typeof AppTryoutsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppAttemptsRoute: AppAttemptsRoute,
   AppDashboardRoute: AppDashboardRoute,
+  AppQuestionsRoute: AppQuestionsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSubtestsRoute: AppSubtestsRoute,
+  AppTestsRoute: AppTestsRoute,
   AppTryoutsRoute: AppTryoutsRoute,
 }
 
